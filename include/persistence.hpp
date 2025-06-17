@@ -16,8 +16,8 @@ bool WriteRegistryDWORD(LPCWSTR name, DWORD value);
 bool ReadRegistryDWORD(LPCWSTR name, DWORD &value);
 
 struct KeyrateConfig {
-	DWORD delay = 300;
-	DWORD repeat = 40;
+	DWORD delay = 120;
+	DWORD repeat = 1;
 	bool enable = true;
 };
 
