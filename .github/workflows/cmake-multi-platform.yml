@@ -47,7 +47,7 @@ jobs:
       with:
         tag_name: ${{ steps.version.outputs.tag }}
         name: Release ${{ steps.version.outputs.tag }}
-        files: build/keyrate.exe
+        files: build\Release\keyrate.exe
         draft: false
         prerelease: false
       env:
