@@ -1,0 +1,1 @@
+/usr/bin/c++  -s -O3 -DNDEBUG -Wl,--dependency-file=CMakeFiles/keyrate.dir/link.d CMakeFiles/keyrate.dir/main.cpp.o CMakeFiles/keyrate.dir/src/persistence.cpp.o -o keyrate  -lcomctl32 -lshell32 -luser32 -lgdi32 -ladvapi32
