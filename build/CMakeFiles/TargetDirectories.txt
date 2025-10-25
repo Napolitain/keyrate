@@ -1,3 +1,0 @@
-/home/runner/work/keyrate/keyrate/build/CMakeFiles/keyrate.dir
-/home/runner/work/keyrate/keyrate/build/CMakeFiles/edit_cache.dir
-/home/runner/work/keyrate/keyrate/build/CMakeFiles/rebuild_cache.dir
