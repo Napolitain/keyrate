@@ -1,6 +1,6 @@
 # This starter workflow is for a CMake project running on multiple platforms. There is a different starter workflow if you just want a single platform.
 # See: https://github.com/actions/starter-workflows/blob/main/ci/cmake-single-platform.yml
-name: CMake on multiple platforms
+name: Build and Release
 
 on:
   push:
@@ -61,3 +61,27 @@ jobs:
     - name: Build
       # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
       run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config ${{ matrix.build_type }}
+
+    - name: Generate version tag
+      id: version
+      shell: bash
+      run: |
+        # Generate deterministic version based on date (UTC) and commit SHA
+        # Using UTC ensures consistent timestamps across all matrix jobs
+        VERSION="v$(date -u +'%Y.%m.%d')-${GITHUB_SHA::7}"
+        echo "tag=$VERSION" >> "$GITHUB_OUTPUT"
+        echo "Generated version: $VERSION"
+
+    - name: Create Release and Upload Binary
+      # Only create release once: on push to master and only for the MSVC compiler configuration
+      if: github.event_name == 'push' && github.ref == 'refs/heads/master' && matrix.c_compiler == 'cl'
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: ${{ steps.version.outputs.tag }}
+        name: Release ${{ steps.version.outputs.tag }}
+        # Path assumes Windows multi-config generator (Visual Studio/MSVC) which creates Release subdirectory
+        files: ${{ steps.strings.outputs.build-output-dir }}/Release/keyrate.exe
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
