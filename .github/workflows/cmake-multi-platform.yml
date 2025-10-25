@@ -47,8 +47,7 @@ jobs:
       with:
         tag_name: ${{ steps.version.outputs.tag }}
         name: Release ${{ steps.version.outputs.tag }}
-        # Path assumes Windows multi-config generator (Visual Studio/MSVC) which creates Release subdirectory
-        files: ${{ steps.strings.outputs.build-output-dir }}/Release/keyrate.exe
+        files: build/keyrate.exe
         draft: false
         prerelease: false
       env:
