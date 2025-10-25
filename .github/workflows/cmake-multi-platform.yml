@@ -66,17 +66,20 @@ jobs:
       id: version
       shell: bash
       run: |
-        # Generate version based on date and short commit SHA
-        VERSION="v$(date +'%Y.%m.%d')-${GITHUB_SHA::7}"
+        # Generate deterministic version based on date (UTC) and commit SHA
+        # Using UTC ensures consistent timestamps across all matrix jobs
+        VERSION="v$(date -u +'%Y.%m.%d')-${GITHUB_SHA::7}"
         echo "tag=$VERSION" >> "$GITHUB_OUTPUT"
         echo "Generated version: $VERSION"
 
     - name: Create Release and Upload Binary
-      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+      # Only create release once: on push to master and only for the MSVC compiler configuration
+      if: github.event_name == 'push' && github.ref == 'refs/heads/master' && matrix.c_compiler == 'cl'
       uses: softprops/action-gh-release@v2
       with:
         tag_name: ${{ steps.version.outputs.tag }}
         name: Release ${{ steps.version.outputs.tag }}
+        # Path assumes Windows multi-config generator (Visual Studio/MSVC) which creates Release subdirectory
         files: ${{ steps.strings.outputs.build-output-dir }}/Release/keyrate.exe
         draft: false
         prerelease: false
