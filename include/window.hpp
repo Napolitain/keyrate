@@ -12,6 +12,6 @@ extern HWND g_hWnd;
 extern HINSTANCE g_hInst;
 
 // Window procedure for the main window
-LRESULT CALLBACK WndProc(const HWND hWnd, const UINT message, const WPARAM wParam, const LPARAM lParam);
+LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 #endif //WINDOW_HPP
