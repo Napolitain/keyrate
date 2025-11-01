@@ -12,7 +12,7 @@ void AddTrayIcon(const HWND hWnd) {
     nid.uID = ID_TRAY_APP_ICON;
     nid.uFlags = NIF_ICON | NIF_MESSAGE | NIF_TIP;
     nid.uCallbackMessage = WM_TRAYICON;
-    nid.hIcon = LoadIconW(NULL, IDI_INFORMATION);
+    nid.hIcon = LoadIconW(NULL, MAKEINTRESOURCEW(IDI_INFORMATION));
     wcscpy_s(nid.szTip, L"Keyrate Toggler");
     Shell_NotifyIconW(NIM_ADD, &nid);
 }
