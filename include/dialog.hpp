@@ -8,6 +8,6 @@
 constexpr int IDD_KEYRATE_DIALOG = 2001;
 
 // Dialog procedure for keyrate configuration dialog
-INT_PTR CALLBACK DialogProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
+INT_PTR CALLBACK DialogProc(const HWND hDlg, const UINT message, const WPARAM wParam, LPARAM lParam);
 
 #endif //DIALOG_HPP
