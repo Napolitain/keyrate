@@ -1,8 +1,8 @@
 //
 // Created by Maxime Boucher on 14/06/2025.
 //
-#ifndef PERSISTENCE_HPP
-#define PERSISTENCE_HPP
+#ifndef CONFIG_HPP
+#define CONFIG_HPP
 #include <Windows.h>
 
 
@@ -27,4 +27,4 @@ void LoadConfig();
 
 void SaveConfig();
 
-#endif //PERSISTENCE_HPP
+#endif //CONFIG_HPP

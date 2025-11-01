@@ -2,7 +2,7 @@
 // Created by Maxime Boucher on 14/06/2025.
 //
 
-#include "persistence.hpp"
+#include "config.hpp"
 
 bool WriteRegistryDWORD(const LPCWSTR name, const DWORD value) {
 	HKEY hKey;
