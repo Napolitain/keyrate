@@ -6,6 +6,6 @@
 #include <Windows.h>
 
 // Sets the keyboard repeat rate using Windows FilterKeys API
-void SetKeyrate(DWORD delay, DWORD repeat, bool enable);
+void SetKeyrate(const DWORD delay, const DWORD repeat, const bool enable);
 
 #endif //KEYRATE_HPP
