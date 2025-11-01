@@ -17,6 +17,10 @@ void AddTrayIcon(const HWND hWnd) {
     Shell_NotifyIconW(NIM_ADD, &nid);
 }
 
+void RemoveTrayIcon() {
+    Shell_NotifyIconW(NIM_DELETE, &nid);
+}
+
 void ShowTrayMenu(const HWND hWnd) {
     POINT pt;
     GetCursorPos(&pt);

@@ -5,7 +5,6 @@
 #include "window.hpp"
 #include "tray_icon.hpp"
 #include "dialog.hpp"
-#include <shellapi.h>
 
 HWND g_hWnd;
 HINSTANCE g_hInst;
@@ -24,14 +23,14 @@ LRESULT CALLBACK WndProc(const HWND hWnd, const UINT message, const WPARAM wPara
                     DialogBoxW(g_hInst, MAKEINTRESOURCEW(IDD_KEYRATE_DIALOG), hWnd, DialogProc);
                     break;
                 case ID_TRAY_EXIT:
-                    Shell_NotifyIconW(NIM_DELETE, &nid);
+                    RemoveTrayIcon();
                     PostQuitMessage(0);
                     break;
             }
             break;
 
         case WM_DESTROY:
-            Shell_NotifyIconW(NIM_DELETE, &nid);
+            RemoveTrayIcon();
             PostQuitMessage(0);
             break;
 

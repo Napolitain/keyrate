@@ -32,15 +32,23 @@ int WINAPI wWinMain(const HINSTANCE hInstance, HINSTANCE, PWSTR, int) {
     constexpr INITCOMMONCONTROLSEX icex = {sizeof(INITCOMMONCONTROLSEX), ICC_WIN95_CLASSES};
     InitCommonControlsEx(&icex);
 
-    auto *pDlg = static_cast<DLGTEMPLATE *>(GlobalAlloc(GPTR, 1024));
-    ZeroMemory(pDlg, 1024);
+    // Dialog template memory allocation
+    constexpr SIZE_T DIALOG_TEMPLATE_SIZE = 1024;
+    constexpr WORD DIALOG_CONTROL_COUNT = 4;
+    constexpr short DIALOG_X = 10;
+    constexpr short DIALOG_Y = 10;
+    constexpr short DIALOG_WIDTH = 200;
+    constexpr short DIALOG_HEIGHT = 80;
+
+    auto *pDlg = static_cast<DLGTEMPLATE *>(GlobalAlloc(GPTR, DIALOG_TEMPLATE_SIZE));
+    ZeroMemory(pDlg, DIALOG_TEMPLATE_SIZE);
     pDlg->style = WS_POPUP | WS_SYSMENU | WS_CAPTION;
     pDlg->dwExtendedStyle = 0;
-    pDlg->cdit = 4;
-    pDlg->x = 10;
-    pDlg->y = 10;
-    pDlg->cx = 200;
-    pDlg->cy = 80;
+    pDlg->cdit = DIALOG_CONTROL_COUNT;
+    pDlg->x = DIALOG_X;
+    pDlg->y = DIALOG_Y;
+    pDlg->cx = DIALOG_WIDTH;
+    pDlg->cy = DIALOG_HEIGHT;
 
     CreateDialogIndirectParamW(hInstance, pDlg, g_hWnd, DialogProc, 0);
     GlobalFree(pDlg);

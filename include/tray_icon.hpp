@@ -11,11 +11,11 @@ constexpr int ID_TRAY_EXIT = 1002;
 constexpr int ID_TRAY_TOGGLE = 1003;
 constexpr int WM_TRAYICON = (WM_USER + 1);
 
-// Tray icon data structure
-extern NOTIFYICONDATAW nid;
-
 // Add the application icon to the system tray
 void AddTrayIcon(HWND hWnd);
+
+// Remove the tray icon
+void RemoveTrayIcon();
 
 // Show the context menu for the tray icon
 void ShowTrayMenu(HWND hWnd);
